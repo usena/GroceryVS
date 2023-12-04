@@ -3,8 +3,8 @@ class Place_OrderVS:
     def __init__(self,food,amount):
         self.__food = food
         self.__amount = amount
-        self.__price = self.__price
-        self.__totalPrice = 0
+        self.__price = self.__PriceListVS()
+        self.__totalPrice = self.calculatedCostVS()
     
     def __PriceListVS(self):
         if self.__food == 'Dry Cured Iberian Ham':
@@ -25,8 +25,16 @@ class Place_OrderVS:
             self.__price = 270.81
         else:
             self.__price = 0.00
+        return self.__price
     
     def calculatedCostVS(self):
-        self.__totalPrice = self.__amount*self.__price
+        return self.__amount*self.__price
+    
+    def getTotal(self):
         return self.__totalPrice
     
+    def __str__(self):
+        print(f'Item: {self.__food}')
+        print(f'Amount ordered: {self.__amount} pounds')
+        print(f'Price per pound: ${self.__price}')
+        print(f'Price of order: ${self.__totalPrice}\n')
